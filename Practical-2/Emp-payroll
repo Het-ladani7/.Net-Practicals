@@ -1,0 +1,69 @@
+using System;
+
+namespace EmployeePayrollSystem
+{
+    // Interface
+    interface ISalary
+    {
+        void CalculateSalary();
+    }
+
+    // Base Class
+    class Employee
+    {
+        public int Id;
+        public string Name;
+
+        public Employee(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public virtual void Display()
+        {
+            Console.WriteLine("Employee ID: " + Id);
+            Console.WriteLine("Employee Name: " + Name);
+        }
+    }
+
+    // Derived Class
+    class FullTimeEmployee : Employee, ISalary
+    {
+        double BasicSalary;
+
+        public FullTimeEmployee(int id, string name, double salary)
+            : base(id, name)
+        {
+            BasicSalary = salary;
+        }
+
+        // Interface Method
+        public void CalculateSalary()
+        {
+            Console.WriteLine("Net Salary: " + (BasicSalary + 5000));
+        }
+
+        // Polymorphism (Method Overriding)
+        public override void Display()
+        {
+            base.Display();
+            Console.WriteLine("Basic Salary: " + BasicSalary);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee emp = new FullTimeEmployee(500, "Het", 70000);
+
+            emp.Display();
+
+            ISalary salary = (ISalary)emp;
+            salary.CalculateSalary();
+
+            Console.ReadLine();
+        }
+    }
+}
