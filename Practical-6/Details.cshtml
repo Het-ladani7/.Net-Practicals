@@ -1,0 +1,30 @@
+@model ProductCatalogMVC.Models.Product
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Details</title>
+</head>
+
+<body>
+
+    <h1>Product Details</h1>
+
+    <h3>Product ID: @Model.Id</h3>
+
+    <h3>Product Name: @Model.Name</h3>
+
+    <h3>Price: ₹@Model.Price</h3>
+
+    <h3>Category: @Model.Category</h3>
+
+    <br />
+
+    @Html.ActionLink(
+        "Back to Product List",
+        "Index",
+        "Product"
+    )
+
+</body>
+</html>
