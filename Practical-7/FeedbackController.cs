@@ -1,44 +1,33 @@
-@model P7.Models.Feedback
+using System.Web.Mvc;
+using P7.Models;
 
-@{
-    ViewBag.Title = "Feedback";
+namespace P7.Controllers
+{
+    public class FeedbackController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View(new Feedback());
+        }
+
+        [HttpPost]
+        public ActionResult Submit(Feedback feedback)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Please correct the errors below.";
+                return View("Index", feedback);
+            }
+
+            ViewBag.SuccessMessage =
+                "Thank you! Your feedback has been submitted successfully.";
+
+            ViewBag.Name = feedback.Name;
+            ViewBag.Category = feedback.Category;
+            ViewBag.Rating = feedback.Rating;
+
+            return View("Index", new Feedback());
+        }
+    }
 }
-
-<div class="card">
-
-    <div class="card-body p-4">
-
-        <h2 class="text-center mb-4">
-            Customer Feedback
-        </h2>
-
-
-        @if (ViewBag.SuccessMessage != null)
-        {
-            <div class="alert alert-success">
-                @ViewBag.SuccessMessage
-            </div>
-        }
-
-
-        @if (ViewBag.ErrorMessage != null)
-        {
-            <div class="alert alert-danger">
-                @ViewBag.ErrorMessage
-            </div>
-        }
-
-
-        @Html.Partial("_FeedbackForm", Model)
-
-
-        @if (ViewBag.SuccessMessage != null)
-        {
-            <hr />
-
-            @Html.Partial("_FeedbackSummary")
-        }
-
-    </div>
-
-</div>
+```
