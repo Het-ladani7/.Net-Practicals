@@ -1,44 +1,32 @@
-@model P7.Models.Feedback
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
-@{
-    ViewBag.Title = "Feedback";
+namespace P7.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+    }
 }
-
-<div class="card">
-
-    <div class="card-body p-4">
-
-        <h2 class="text-center mb-4">
-            Customer Feedback
-        </h2>
-
-
-        @if (ViewBag.SuccessMessage != null)
-        {
-            <div class="alert alert-success">
-                @ViewBag.SuccessMessage
-            </div>
-        }
-
-
-        @if (ViewBag.ErrorMessage != null)
-        {
-            <div class="alert alert-danger">
-                @ViewBag.ErrorMessage
-            </div>
-        }
-
-
-        @Html.Partial("_FeedbackForm", Model)
-
-
-        @if (ViewBag.SuccessMessage != null)
-        {
-            <hr />
-
-            @Html.Partial("_FeedbackSummary")
-        }
-
-    </div>
-
-</div>
+```
