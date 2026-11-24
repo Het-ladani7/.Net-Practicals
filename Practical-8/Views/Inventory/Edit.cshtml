@@ -1,0 +1,38 @@
+@model InventoryManagementMVC.Models.Product
+
+@{
+    ViewBag.Title = "Edit Product";
+}
+
+<h2>Edit Product</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+
+    @Html.ValidationSummary(true)
+
+    <p>
+        Product Name:
+        @Html.TextBoxFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name)
+    </p>
+
+    <p>
+        Quantity:
+        @Html.TextBoxFor(m => m.Quantity)
+        @Html.ValidationMessageFor(m => m.Quantity)
+    </p>
+
+    <p>
+        Price:
+        @Html.TextBoxFor(m => m.Price)
+        @Html.ValidationMessageFor(m => m.Price)
+    </p>
+
+    <input type="submit" value="Update Product" />
+}
+
+<br />
+
+@Html.ActionLink("Back to Inventory", "Index")
